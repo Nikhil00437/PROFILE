@@ -27,3 +27,20 @@ I’m currently pursuing my B.Tech in AI & DS from CGC Landran. I'm passionate a
 ---
 
 ## 📁 Project Structure
+├── index.html ├── /image │ └── nikhil.png ├── /resume │ └── Resume2.pdf
+
+
+---
+
+## 📬 Contact
+Feel free to reach out or collaborate:
+- 📧 Email: [nikhilbisht2005@gmail.com](mailto:nikhilbisht2005@gmail.com)
+
+---
+
+## 📌 Note
+This is a static portfolio hosted on **GitHub Pages**. You’re welcome to fork and customize it for your own use!
+
+---
+
+⭐ If you like it, give this repo a star!
