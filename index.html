@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nikhil | AI & DS Student</title>
+
+  <title>Nikhil | AI & Data Science Engineer</title>
+
+  <!-- SEO (finally) -->
+  <meta name="description" content="AI & Data Science student building ML systems, voice assistants, and real-world intelligent applications." />
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animations -->
   <style>
     @keyframes fade-in {
       from { opacity: 0; transform: translateY(10px); }
@@ -15,139 +23,152 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-fade-in {
-      animation: fade-in 1s ease-out forwards;
+      animation: fade-in 0.8s ease-out forwards;
     }
     .animate-slide-up {
-      animation: slide-up 1s ease-out forwards;
+      animation: slide-up 0.8s ease-out forwards;
     }
   </style>
 </head>
+
 <body class="bg-gray-900 text-gray-100">
 
-  <!-- Navbar -->
-  <!-- Navbar (Responsive with Hamburger) -->
-<header class="bg-gray-800 shadow sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Nikhil</h1>
-      
-      <!-- Hamburger Button -->
-      <button id="menu-btn" class="sm:hidden text-white focus:outline-none">
-        <svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-  
-      <!-- Menu (Desktop) -->
-      <nav id="menu" class="hidden sm:flex space-x-4">
-        <a href="#about" class="hover:text-blue-400">About</a>
-        <a href="#skills" class="hover:text-blue-400">Skills</a>
-        <a href="#technology" class="hover:text-blue-400">Technology</a>
-        <a href="#projects" class="hover:text-blue-400">Projects</a>
-        <a href="#contact" class="hover:text-blue-400">Contact</a>
-      </nav>
-    </div>
-  
-    <!-- Menu (Mobile Dropdown) -->
-    <div id="mobile-menu" class="sm:hidden hidden px-4 pb-4">
-      <a href="#about" class="block py-2 hover:text-blue-400">About</a>
-      <a href="#skills" class="block py-2 hover:text-blue-400">Skills</a>
-      <a href="#technology" class="block py-2 hover:text-blue-400">Technology</a>
-      <a href="#projects" class="block py-2 hover:text-blue-400">Projects</a>
-      <a href="#contact" class="block py-2 hover:text-blue-400">Contact</a>
-    </div>
-  
-    <script>
-      const menuBtn = document.getElementById('menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-  
-      menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    </script>
-  </header>
-  
+<!-- ================= NAVBAR ================= -->
+<header class="bg-gray-800/80 backdrop-blur sticky top-0 z-40 border-b border-gray-700">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold tracking-wide">Nikhil</h1>
 
-  <!-- Hero Section -->
-  <section class="text-center py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-    <img src="image/nikhil.png" alt="Nikhil's Profile Picture" class="mx-auto rounded-full w-32 h-32 mb-4 border-4 border-white shadow-lg animate-bounce">
-    <h2 class="text-4xl font-bold mb-2 animate-fade-in">Hi, I'm Nikhil 👋</h2>
-    <p class="text-lg animate-fade-in">B.Tech Student in AI & DS | CGC Landran</p>
-    <p class="text-sm mt-2 animate-fade-in">Building projects focused on AI, machine learning, and voice interaction.</p>
-    <a href="resume/2221394_NIKHILfos.pdf" download class="mt-6 inline-block bg-white text-blue-600 px-5 py-2 rounded-full shadow hover:bg-blue-100 transition">Download Resume</a>
-  </section>
+    <!-- Hamburger -->
+    <button id="menu-btn" class="sm:hidden">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
 
-  <!-- About Section -->
-  <section id="about" class="py-16 px-6 max-w-4xl mx-auto animate-slide-up">
-    <h3 class="text-3xl font-semibold mb-4">About Me</h3>
-    <p class="text-lg leading-relaxed">
-      I'm a B.Tech student in Artificial Intelligence & Data Science at CGC Landran. 
-      My primary focus is building applications in the fields of AI/ML and voice assistant technology. My project work includes developing systems for speech-based translation and data visualization.
-    </p>
-  </section>
+    <!-- Desktop Menu -->
+    <nav class="hidden sm:flex space-x-6 font-medium">
+      <a href="#about" class="hover:text-blue-400">About</a>
+      <a href="#skills" class="hover:text-blue-400">Skills</a>
+      <a href="#projects" class="hover:text-blue-400">Projects</a>
+      <a href="#contact" class="hover:text-blue-400">Contact</a>
+    </nav>
+  </div>
 
-  <!-- Skills Section -->
-  <section id="skills" class="py-16 bg-gray-800 px-6 max-w-4xl mx-auto animate-slide-up">
-    <h3 class="text-3xl font-semibold mb-6">Skills</h3>
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden sm:hidden px-6 pb-4 space-y-2">
+    <a href="#about" class="block">About</a>
+    <a href="#skills" class="block">Skills</a>
+    <a href="#projects" class="block">Projects</a>
+    <a href="#contact" class="block">Contact</a>
+  </div>
+</header>
+
+<script>
+  document.getElementById("menu-btn").onclick = () =>
+    document.getElementById("mobile-menu").classList.toggle("hidden");
+</script>
+
+<!-- ================= HERO ================= -->
+<section class="min-h-screen flex flex-col justify-center items-center text-center bg-gradient-to-br from-blue-600 to-indigo-700 px-6">
+  <img src="image/nikhil.png"
+       alt="Nikhil"
+       class="w-36 h-36 rounded-full border-4 border-white shadow-lg mb-6 animate-fade-in" />
+
+  <h2 class="text-5xl font-bold animate-fade-in">
+    AI & Data Science Engineer
+  </h2>
+
+  <p class="mt-4 text-lg text-blue-100 animate-fade-in">
+    Building intelligent systems, not toy demos.
+  </p>
+
+  <a href="resume/2221394_NIKHILfos.pdf"
+     download
+     class="mt-8 bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-100 transition">
+    Download Resume
+  </a>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="py-20 max-w-5xl mx-auto px-6 animate-slide-up">
+  <h3 class="text-4xl font-semibold mb-6">About Me</h3>
+  <p class="text-lg leading-relaxed text-gray-300">
+    B.Tech student in Artificial Intelligence & Data Science at CGC Landran.
+    I focus on building <span class="text-white font-medium">production-grade ML systems</span>,
+    voice assistants, and real-time AI applications.
+    I care about correctness, performance, and systems that don’t collapse outside demos.
+  </p>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" class="py-20 bg-gray-800 px-6 animate-slide-up">
+  <div class="max-w-5xl mx-auto">
+    <h3 class="text-4xl font-semibold mb-8">Skills</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
       <div class="bg-gray-700 p-4 rounded">Python</div>
-      <div class="bg-gray-700 p-4 rounded">C++</div>
-      <div class="bg-gray-700 p-4 rounded">C</div>
+      <div class="bg-gray-700 p-4 rounded">C / C++</div>
       <div class="bg-gray-700 p-4 rounded">MongoDB</div>
-      <div class="bg-gray-700 p-4 rounded">R Language</div>
-    </div>
-  </section>
-
-  <!-- Technology Section -->
-  <section id="technology" class="py-16 bg-gray-900 px-6 max-w-4xl mx-auto animate-slide-up">
-    <h3 class="text-3xl font-semibold mb-6">Technology</h3>
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
-      <div class="bg-gray-700 p-4 rounded">Linux (Learning)</div>
-      <!-- <div class="bg-gray-700 p-4 rounded">Git & GitHub</div> -->
       <div class="bg-gray-700 p-4 rounded">Machine Learning</div>
-      <div class="bg-gray-700 p-4 rounded">Artificial Intelligence</div>
-      <div class="bg-gray-700 p-4 rounded">Google Gemini API</div>
       <div class="bg-gray-700 p-4 rounded">Deep Learning</div>
+      <div class="bg-gray-700 p-4 rounded">Linux (Learning)</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-16 px-6 max-w-4xl mx-auto animate-slide-up">
-    <h3 class="text-3xl font-semibold mb-6">Projects</h3>
-    <ul class="space-y-4">
-      <li class="bg-gray-700 p-4 rounded shadow">
-        <h4 class="text-xl font-semibold">Speech-Based Translation System</h4>
-        <p>Voice-to-voice translator using language detection, translation, and Gemini API.</p>
-      </li>
-      <li class="bg-gray-700 p-4 rounded shadow">
-        <h4 class="text-xl font-semibold">Student Progress Tracker</h4>
-        <p>Visualizes student performance and compares with peers using graphs.</p>
-      </li>
-      <li class="bg-gray-700 p-4 rounded shadow">
-        <h4 class="text-xl font-semibold">ASTRA - Guide Mode</h4>
-        <p>Voice-based smart assistant for Kedarnath temple visitors with offline and online versions.</p>
-      </li>
-      <li class="bg-gray-700 p-4 rounded shadow">
-        <h4 class="text-xl font-semibold">Real-Time Facial Emotion Detection</h4>
-        <p>Uses DeepFace with webcam feed to analyze and detect facial emotions in real-time using OpenCV.</p>
-      </li>      
-    </ul>
-  </section>
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="py-20 max-w-5xl mx-auto px-6 animate-slide-up">
+  <h3 class="text-4xl font-semibold mb-8">Projects</h3>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-gray-800 px-6 max-w-4xl mx-auto animate-slide-up">
-    <h3 class="text-3xl font-semibold mb-6">Contact Me</h3>
-    <p class="text-lg mb-4">Want to collaborate or say hi? Feel free to reach out!</p>
-    <p>Email: <a href="mailto:nikhilbisht2005@gmail.com" class="text-blue-400 underline">nikhilbisht2005@gmail.com</a></p>
-  </section>
+  <div class="grid gap-6">
+    <div class="bg-gray-800 p-6 rounded-lg shadow">
+      <h4 class="text-xl font-semibold">Speech-Based Translation System</h4>
+      <p class="text-gray-400 mt-2">
+        End-to-end voice-to-voice translator using language detection, translation, and Gemini API.
+      </p>
+    </div>
 
-  <!-- Footer -->
-  <footer class="text-center py-6 bg-gray-900 border-t border-gray-700">
-    <p>&copy; 2025 Nikhil. All rights reserved.</p>
-  </footer>
+    <div class="bg-gray-800 p-6 rounded-lg shadow">
+      <h4 class="text-xl font-semibold">AI RAG Chatbot</h4>
+      <p class="text-gray-400 mt-2">
+        Retrieval-Augmented Generation chatbot answering strictly from verified documents.
+      </p>
+    </div>
+
+    <div class="bg-gray-800 p-6 rounded-lg shadow">
+      <h4 class="text-xl font-semibold">Smart Surveillance – Anomaly Detection</h4>
+      <p class="text-gray-400 mt-2">
+        Detects abnormal activities using object detection and unsupervised behavior patterns.
+      </p>
+    </div>
+
+    <div class="bg-gray-800 p-6 rounded-lg shadow">
+      <h4 class="text-xl font-semibold">Real-Time Emotion Detection</h4>
+      <p class="text-gray-400 mt-2">
+        Webcam-based emotion recognition using DeepFace and OpenCV.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-20 bg-gray-800 px-6 animate-slide-up">
+  <div class="max-w-5xl mx-auto">
+    <h3 class="text-4xl font-semibold mb-6">Contact</h3>
+    <p class="text-lg text-gray-300 mb-4">
+      Want to collaborate or build something serious?
+    </p>
+    <a href="mailto:nikhilbisht2005@gmail.com"
+       class="text-blue-400 text-lg underline">
+      nikhilbisht2005@gmail.com
+    </a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="py-6 text-center text-gray-500 border-t border-gray-700">
+  © 2025 Nikhil — Built clean, not flashy.
+</footer>
+
 </body>
 </html>
-
-
-
-
-
