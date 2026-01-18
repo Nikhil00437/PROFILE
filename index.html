@@ -12,25 +12,56 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Animations -->
+  <!-- Animations + Hero Effect -->
   <style>
     @keyframes fade-in {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     @keyframes slide-up {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .animate-fade-in { animation: fade-in 0.8s ease-out forwards; }
-    .animate-slide-up { animation: slide-up 0.8s ease-out forwards; }
+
+    .animate-fade-in {
+      animation: fade-in 0.8s ease-out forwards;
+    }
+
+    .animate-slide-up {
+      animation: slide-up 0.8s ease-out forwards;
+    }
+
+    /* ===== HERO BACKGROUND EFFECT ===== */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-color: #0b0f14;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 18px 18px;
+      overflow: hidden;
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        420px circle at var(--x, 50%) var(--y, 50%),
+        rgba(255, 120, 60, 0.25),
+        transparent 60%
+      );
+      pointer-events: none;
+      transition: background 0.05s linear;
+    }
   </style>
 </head>
 
-<body class="bg-gray-900 text-gray-100">
+<body class="bg-neutral-950 text-neutral-100">
 
 <!-- ================= NAVBAR ================= -->
-<header class="bg-gray-800/80 backdrop-blur sticky top-0 z-40 border-b border-gray-700">
+<header class="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-900/70 backdrop-blur">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold tracking-wide">Nikhil</h1>
 
@@ -41,15 +72,15 @@
       </svg>
     </button>
 
-    <nav class="hidden sm:flex space-x-6 font-medium">
-      <a href="#about" class="hover:text-blue-400">About</a>
-      <a href="#skills" class="hover:text-blue-400">Skills</a>
-      <a href="#projects" class="hover:text-blue-400">Projects</a>
-      <a href="#contact" class="hover:text-blue-400">Contact</a>
+    <nav class="hidden sm:flex space-x-6 font-medium text-neutral-300">
+      <a href="#about" class="hover:text-orange-400">About</a>
+      <a href="#skills" class="hover:text-orange-400">Skills</a>
+      <a href="#projects" class="hover:text-orange-400">Projects</a>
+      <a href="#contact" class="hover:text-orange-400">Contact</a>
     </nav>
   </div>
 
-  <div id="mobile-menu" class="hidden sm:hidden px-6 pb-4 space-y-2">
+  <div id="mobile-menu" class="hidden sm:hidden px-6 pb-4 space-y-2 text-neutral-300">
     <a href="#about" class="block">About</a>
     <a href="#skills" class="block">Skills</a>
     <a href="#projects" class="block">Projects</a>
@@ -57,135 +88,157 @@
   </div>
 </header>
 
-<script>
-  document.getElementById("menu-btn").onclick = () =>
-    document.getElementById("mobile-menu").classList.toggle("hidden");
-</script>
-
 <!-- ================= HERO ================= -->
-<section class="min-h-screen flex flex-col justify-center items-center text-center bg-gradient-to-br from-blue-600 to-indigo-700 px-6">
-  <img src="image/nikhil.png"
-       alt="Nikhil"
-       class="w-36 h-36 rounded-full border-4 border-white shadow-lg mb-6 animate-fade-in" />
+<section
+  id="hero"
+  class="relative min-h-screen flex items-center justify-center text-center px-6 overflow-hidden"
+>
+  <!-- Background -->
+  <div class="hero-bg"></div>
 
-  <h2 class="text-5xl font-bold animate-fade-in">
-    AI & Data Science Engineer
-  </h2>
+  <!-- Content -->
+  <div class="relative z-10 max-w-4xl mx-auto pt-28 pb-28">
+    <img
+      src="image/nikhil.png"
+      alt="Nikhil"
+      class="w-36 h-36 rounded-full border-4 border-orange-400 shadow-xl mx-auto mb-8 animate-fade-in"
+    />
 
-  <p class="mt-4 text-lg text-blue-100 animate-fade-in">
-    Building intelligent systems, not toy demos.
-  </p>
+    <h2 class="text-5xl sm:text-6xl font-bold text-neutral-100 animate-fade-in">
+      AI & Data Science Engineer
+    </h2>
 
-  <a href="resume/Nikhil.pdf"
-     download
-     class="mt-8 bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-100 transition">
-    Download Resume
-  </a>
+    <p class="mt-5 text-lg text-neutral-400 animate-fade-in">
+      Building intelligent systems — not toy demos.
+    </p>
+
+    <a
+      href="resume/Nikhil.pdf"
+      download
+      class="inline-block mt-10 bg-orange-500 text-black px-7 py-3 rounded-full font-semibold hover:bg-orange-400 transition"
+    >
+      Download Resume →
+    </a>
+  </div>
 </section>
 
 <!-- ================= ABOUT ================= -->
-<section id="about" class="py-20 max-w-5xl mx-auto px-6 animate-slide-up">
+<section id="about" class="py-24 max-w-5xl mx-auto px-6 animate-slide-up">
   <h3 class="text-4xl font-semibold mb-6">About Me</h3>
-  <p class="text-lg leading-relaxed text-gray-300">
-    I build practical AI and data-driven systems, focusing on reliability, performance, and real-world usability.
-    My work spans <span class="text-white font-medium">RAG pipelines, computer vision applications, and backend AI services</span> using Python.
+  <p class="text-lg leading-relaxed text-neutral-400">
+    I build practical AI and data-driven systems with a focus on reliability,
+    performance, and real-world usability. My work includes
+    <span class="text-neutral-200 font-medium">
+      RAG pipelines, computer vision systems, and backend AI services
+    </span>.
   </p>
 </section>
 
 <!-- ================= SKILLS ================= -->
-<section id="skills" class="py-20 bg-gray-800 px-6 animate-slide-up">
+<section id="skills" class="py-24 bg-neutral-900 px-6 animate-slide-up">
   <div class="max-w-5xl mx-auto">
     <h3 class="text-4xl font-semibold mb-8">Skills</h3>
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
-      <div class="bg-gray-700 p-4 rounded">Python</div>
-      <div class="bg-gray-700 p-4 rounded">C / C++</div>
-      <div class="bg-gray-700 p-4 rounded">MongoDB</div>
-      <div class="bg-gray-700 p-4 rounded">Machine Learning</div>
-      <div class="bg-gray-700 p-4 rounded">Deep Learning</div>
-      <div class="bg-gray-700 p-4 rounded">Linux (Basics)</div>
-      <div class="bg-gray-700 p-4 rounded">TenserFlow</div>
-      <div class="bg-gray-700 p-4 rounded">JavaScript</div>
-      <div class="bg-gray-700 p-4 rounded">Artificial Intelligence</div>
-      <div class="bg-gray-700 p-4 rounded">DataBase Management System</div>
-      <div class="bg-gray-700 p-4 rounded">OpenCV</div>
-      <div class="bg-gray-700 p-4 rounded">PyTorch</div>
-      <div class="bg-gray-700 p-4 rounded">Git</div>
-      <div class="bg-gray-700 p-4 rounded">GitHub</div>
-      <div class="bg-gray-700 p-4 rounded">OOPs</div>
-      <div class="bg-gray-700 p-4 rounded">RestAPI</div>
-      <div class="bg-gray-700 p-4 rounded">React</div>
-      <div class="bg-gray-700 p-4 rounded">Docker</div>
+      <div class="bg-neutral-800 p-4 rounded">Python</div>
+      <div class="bg-neutral-800 p-4 rounded">C / C++</div>
+      <div class="bg-neutral-800 p-4 rounded">MongoDB</div>
+      <div class="bg-neutral-800 p-4 rounded">Machine Learning</div>
+      <div class="bg-neutral-800 p-4 rounded">Deep Learning</div>
+      <div class="bg-neutral-800 p-4 rounded">Linux</div>
+      <div class="bg-neutral-800 p-4 rounded">TensorFlow</div>
+      <div class="bg-neutral-800 p-4 rounded">PyTorch</div>
+      <div class="bg-neutral-800 p-4 rounded">OpenCV</div>
+      <div class="bg-neutral-800 p-4 rounded">JavaScript</div>
+      <div class="bg-neutral-800 p-4 rounded">React</div>
+      <div class="bg-neutral-800 p-4 rounded">Docker</div>
+      <div class="bg-neutral-800 p-4 rounded">Git</div>
+      <div class="bg-neutral-800 p-4 rounded">GitHub</div>
+      <div class="bg-neutral-800 p-4 rounded">REST APIs</div>
+      <div class="bg-neutral-800 p-4 rounded">DBMS</div>
     </div>
   </div>
 </section>
 
 <!-- ================= PROJECTS ================= -->
-<section id="projects" class="py-20 max-w-5xl mx-auto px-6 animate-slide-up">
+<section id="projects" class="py-24 max-w-5xl mx-auto px-6 animate-slide-up">
   <h3 class="text-4xl font-semibold mb-8">Projects</h3>
 
   <div class="grid gap-6">
-
-    <div class="bg-gray-800 p-6 rounded-lg shadow">
-      <a href="https://github.com/Nikhil00437/cap" target="_blank" class="text-xl font-semibold hover:text-blue-400">
+    <div class="bg-neutral-900 p-6 rounded-lg border border-neutral-800 hover:border-orange-400 transition">
+      <a href="https://github.com/Nikhil00437/cap" target="_blank"
+         class="text-xl font-semibold hover:text-orange-400">
         AI RAG Chatbot
       </a>
-      <p class="text-gray-400 mt-2">
+      <p class="text-neutral-400 mt-2">
         Retrieval-Augmented Generation chatbot answering strictly from verified documents.
       </p>
     </div>
 
-    <div class="bg-gray-800 p-6 rounded-lg shadow">
-      <a href="https://github.com/Nikhil00437/discordquestcompletionmodified" target="_blank" class="text-xl font-semibold hover:text-blue-400">
-        Discord Quest Completion Automation
+    <div class="bg-neutral-900 p-6 rounded-lg border border-neutral-800 hover:border-orange-400 transition">
+      <a href="https://github.com/Nikhil00437/discordquestcompletionmodified" target="_blank"
+         class="text-xl font-semibold hover:text-orange-400">
+        Discord Quest Automation
       </a>
-      <p class="text-gray-400 mt-2">
-        Reverse-engineered Discord quest mechanics and automated task completion using internal stores and events.
+      <p class="text-neutral-400 mt-2">
+        Reverse-engineered Discord internals to automate quest completion.
       </p>
     </div>
 
-    <div class="bg-gray-800 p-6 rounded-lg shadow">
-      <a href="https://github.com/Nikhil00437/anomaly-detection-smsvuandt-" target="_blank" class="text-xl font-semibold hover:text-blue-400">
+    <div class="bg-neutral-900 p-6 rounded-lg border border-neutral-800 hover:border-orange-400 transition">
+      <a href="https://github.com/Nikhil00437/anomaly-detection-smsvuandt-" target="_blank"
+         class="text-xl font-semibold hover:text-orange-400">
         Smart Surveillance – Anomaly Detection
       </a>
-      <p class="text-gray-400 mt-2">
-        Detects abnormal activities using object detection and unsupervised behavioral pattern analysis.
+      <p class="text-neutral-400 mt-2">
+        Detects abnormal activities using CV and behavioral pattern analysis.
       </p>
     </div>
 
-    <div class="bg-gray-800 p-6 rounded-lg shadow">
-      <a href="https://github.com/Nikhil00437/shiny-winner" target="_blank" class="text-xl font-semibold hover:text-blue-400">
+    <div class="bg-neutral-900 p-6 rounded-lg border border-neutral-800 hover:border-orange-400 transition">
+      <a href="https://github.com/Nikhil00437/shiny-winner" target="_blank"
+         class="text-xl font-semibold hover:text-orange-400">
         Real-Time Emotion Detection
       </a>
-      <p class="text-gray-400 mt-2">
+      <p class="text-neutral-400 mt-2">
         Webcam-based emotion recognition using DeepFace and OpenCV.
       </p>
     </div>
-
   </div>
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section id="contact" class="py-20 bg-gray-800 px-6 animate-slide-up">
+<section id="contact" class="py-24 bg-neutral-900 px-6 animate-slide-up">
   <div class="max-w-5xl mx-auto">
     <h3 class="text-4xl font-semibold mb-6">Contact</h3>
-    <p class="text-lg text-gray-300 mb-4">
+    <p class="text-lg text-neutral-400 mb-4">
       Want to collaborate or build something serious?
     </p>
     <a href="mailto:nikhilbisht2005@gmail.com"
-       class="text-blue-400 text-lg underline">
+       class="text-orange-400 text-lg underline">
       nikhilbisht2005@gmail.com
     </a>
   </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer class="py-6 text-center text-gray-500 border-t border-gray-700">
+<footer class="py-6 text-center text-neutral-500 border-t border-neutral-800">
   © 2025 Nikhil — Built clean, not flashy.
 </footer>
 
+<!-- ================= SCRIPTS ================= -->
+<script>
+  // Mobile menu
+  document.getElementById("menu-btn").onclick = () =>
+    document.getElementById("mobile-menu").classList.toggle("hidden");
+
+  // Hero mouse tracking
+  const hero = document.getElementById("hero");
+  hero.addEventListener("mousemove", (e) => {
+    const rect = hero.getBoundingClientRect();
+    hero.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    hero.style.setProperty("--y", `${e.clientY - rect.top}px`);
+  });
+</script>
+
 </body>
 </html>
-
-
-
-
