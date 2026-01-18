@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Nikhil | AI & Data Science Engineer</title>
 
   <meta name="description"
@@ -13,42 +12,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    /* ===== BASE ANIMATIONS ===== */
-    @keyframes fade-in {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ===== HERO BACKGROUND ===== */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-color: #0b0f14;
-      background-image:
-        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
-      background-size: 18px 18px;
-      overflow: hidden;
-    }
-
-    .hero-bg::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(
-        420px circle at var(--x, 50%) var(--y, 50%),
-        rgba(255, 120, 60, 0.25),
-        transparent 60%
-      );
-      pointer-events: none;
-    }
-
     /* ===== SCROLL REVEAL ===== */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
-
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
@@ -59,42 +28,32 @@
       position: relative;
       overflow: hidden;
     }
-
     .project-card::before {
       content: "";
       position: absolute;
       inset: 0;
       background: radial-gradient(
         300px circle at var(--x, 50%) var(--y, 50%),
-        rgba(255, 165, 0, 0.15),
+        rgba(251,146,60,0.18),
         transparent 60%
       );
       opacity: 0;
       transition: opacity 0.2s ease;
       pointer-events: none;
     }
-
     .project-card:hover::before {
       opacity: 1;
     }
 
-    .project-card:focus-within {
-      border-color: #fb923c;
-      box-shadow: 0 10px 25px rgba(251, 146, 60, 0.25);
-      transform: translateY(-4px);
-    }
-
     /* ===== ACTIVE NAV ===== */
     .nav-link {
-      position: relative;
       color: #a3a3a3;
+      position: relative;
       transition: color 0.2s ease;
     }
-
     .nav-link.active {
       color: #fb923c;
     }
-
     .nav-link.active::after {
       content: "";
       position: absolute;
@@ -106,6 +65,45 @@
       border-radius: 999px;
     }
 
+    /* ===== CONTACT CARDS ===== */
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      background: #0b0f14;
+      border: 1px solid #262626;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-4px);
+      border-color: #fb923c;
+      box-shadow: 0 12px 30px rgba(251,146,60,.2);
+    }
+    .contact-icon {
+      font-size: 1.75rem;
+    }
+    .contact-title {
+      font-weight: 600;
+    }
+    .contact-text {
+      font-size: 0.9rem;
+      color: #a3a3a3;
+      word-break: break-all;
+    }
+
+    /* ===== CANVAS ===== */
+    #grid-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(0.8px);
+    }
+
     /* ===== ACCESSIBILITY ===== */
     :focus-visible {
       outline: 2px solid #fb923c;
@@ -115,30 +113,80 @@
 
     @media (prefers-reduced-motion: reduce) {
       * {
-        animation: none !important;
         transition: none !important;
       }
+      #grid-canvas {
+        filter: none;
+      }
     }
+    /* ===== CONTACT CARDS (CLEAN HOVER GLOW) ===== */
+.contact-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: #050505;
+  border: 1px solid #1f1f1f;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--x, 50%) var(--y, 50%),
+    rgba(251, 146, 60, 0.15),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.contact-card:hover::before {
+  opacity: 1;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  border-color: #fb923c;
+  align-items: center;
+}
+.contact-card > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact-icon {
+  font-size: 1.6rem;
+  color: #fb923c;
+  flex-shrink: 0;
+}
+
+.contact-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.contact-text {
+  font-size: 0.9rem;
+  color: #a3a3a3;
+  word-break: break-all;
+}
+
   </style>
 </head>
 
 <body class="bg-neutral-950 text-neutral-100">
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAV -->
 <header class="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-900/70 backdrop-blur">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold">Nikhil</h1>
-
-    <button id="menu-btn"
-            aria-expanded="false"
-            aria-label="Toggle menu"
-            class="sm:hidden">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
-
     <nav class="hidden sm:flex space-x-6 font-medium">
       <a href="#about" class="nav-link">About</a>
       <a href="#skills" class="nav-link">Skills</a>
@@ -146,134 +194,183 @@
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
   </div>
-
-  <div id="mobile-menu" class="hidden sm:hidden px-6 pb-4 space-y-2">
-    <a href="#about" class="nav-link block">About</a>
-    <a href="#skills" class="nav-link block">Skills</a>
-    <a href="#projects" class="nav-link block">Projects</a>
-    <a href="#contact" class="nav-link block">Contact</a>
-  </div>
 </header>
 
-<!-- ================= HERO ================= -->
-<section id="hero"
-         class="relative min-h-screen flex items-center justify-center text-center px-6 overflow-hidden">
-  <div class="hero-bg"></div>
+<!-- HERO -->
+<section id="hero" class="relative min-h-screen overflow-hidden bg-black">
+    <!-- Canvas Grid -->
+    <canvas id="grid-canvas"></canvas>
+  
+    <!-- Hero Content -->
+    <div class="relative z-10 flex min-h-screen flex-col items-center justify-center text-center px-6">
+      <img
+        src="image/nikhil.png"
+        alt="Nikhil"
+        class="mx-auto mb-6 h-36 w-36 rounded-full border-4 border-orange-500"
+      />
+  
+      <h1 id="hero-name" class="text-5xl font-bold">
+        AI & Data Science Engineer
+      </h1>
+  
+      <p class="mt-4 text-neutral-400 max-w-xl">
+        Building intelligent systems — not toy demos.
+      </p>
+  
+      <a
+        href="resume/Nikhil.pdf"
+        download
+        class="mt-8 inline-block rounded-full bg-orange-500 px-6 py-3 font-semibold text-black hover:bg-orange-400 transition"
+      >
+        Download Resume →
+      </a>
+    </div>
+  </section>
+  
 
-  <div class="relative z-10 max-w-4xl mx-auto pt-28 pb-28">
-    <img src="image/nikhil.png"
-         alt="Nikhil"
-         class="w-36 h-36 rounded-full border-4 border-orange-400 shadow-xl mx-auto mb-8"
-         style="animation: fade-in 0.8s ease forwards;" />
-
-    <h2 class="text-5xl sm:text-6xl font-bold">
-      AI & Data Science Engineer
-    </h2>
-
-    <p class="mt-5 text-lg text-neutral-400">
-      Building intelligent systems — not toy demos.
-    </p>
-
-    <a href="resume/Nikhil.pdf"
-       download
-       class="inline-block mt-10 bg-orange-500 text-black px-7 py-3 rounded-full font-semibold hover:bg-orange-400 transition">
-      Download Resume →
-    </a>
-  </div>
-</section>
-
-<!-- ================= ABOUT ================= -->
+<!-- ABOUT -->
 <section id="about" class="py-24 max-w-5xl mx-auto px-6 reveal">
   <h3 class="text-4xl font-semibold mb-6">About Me</h3>
-  <p class="text-lg text-neutral-400 leading-relaxed">
-    I build practical AI and data-driven systems with a focus on reliability, performance, and real-world usability. 
-    My work includes RAG pipelines, computer vision systems, and backend AI services .
+  <p class="text-lg text-neutral-400">
+    I build reliable AI systems, RAG pipelines, and computer vision solutions focused on real-world usability.
   </p>
 </section>
 
-<!-- ================= SKILLS ================= -->
+<!-- SKILLS -->
 <section id="skills" class="py-24 bg-neutral-900 px-6 reveal">
-  <div class="max-w-5xl mx-auto">
-    <h3 class="text-4xl font-semibold mb-8">Skills</h3>
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">Python</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">C / C++</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">MongoDB</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">Machine Learning</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">Deep Learning</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">Linux</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">TensorFlow</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">PyTorch</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">OpenCV</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">JavaScript</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">React</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">Docker</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">Git</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">GitHub</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">REST APIs</div>
-      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-      transition-all duration-200 ease-out reveal">DBMS</div>
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-4xl font-semibold mb-8">Skills</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">Python</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">C / C++</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">MongoDB</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">Machine Learning</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">Deep Learning</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">Linux (Basics)</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">TensorFlow</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">PyTorch</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">OpenCV</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">JavaScript</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">React</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">Docker</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">Git</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">GitHub</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">REST APIs</div>
+        <div class="project-card bg-neutral-950/80 p-6 rounded-xl
+        border border-neutral-800
+        hover:border-orange-400
+        hover:-translate-y-1
+        hover:shadow-[0_10px_30px_-10px_rgba(249,115,22,0.4)]
+        transition-all duration-200 ease-out
+        reveal">DBMS</div>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= PROJECTS ================= -->
-<section id="projects" class="py-24 max-w-5xl mx-auto px-6 reveal">
-  <h3 class="text-4xl font-semibold mb-8">Projects</h3>
-
-  <div class="grid gap-6">
-    <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-                hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-                transition-all duration-200 ease-out reveal">
-      <a href="https://github.com/Nikhil00437/cap" target="_blank"
-         class="text-xl font-semibold hover:text-orange-400">
-        AI RAG Chatbot
-      </a>
-      <p class="text-neutral-400 mt-2">
-        Verified-document RAG chatbot with strict grounding.
-      </p>
-    </div>
+  </section>
+  
+  <!-- ================= PROJECTS ================= -->
+  <section id="projects" class="py-24 max-w-5xl mx-auto px-6 reveal">
+    <h3 class="text-4xl font-semibold mb-8">Projects</h3>
+  
     <div class="grid gap-6">
       <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
                   hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
                   transition-all duration-200 ease-out reveal">
         <a href="https://github.com/Nikhil00437/cap" target="_blank"
            class="text-xl font-semibold hover:text-orange-400">
-           Discord Quest Automation
+          AI RAG Chatbot
         </a>
         <p class="text-neutral-400 mt-2">
-          Reverse-engineered Discord internals to automate quest completion.
+          Verified-document RAG chatbot with strict grounding.
         </p>
       </div>
       <div class="grid gap-6">
@@ -282,165 +379,314 @@
                     transition-all duration-200 ease-out reveal">
           <a href="https://github.com/Nikhil00437/cap" target="_blank"
              class="text-xl font-semibold hover:text-orange-400">
-             Smart Surveillance – Anomaly Detection
+             Discord Quest Automation
           </a>
           <p class="text-neutral-400 mt-2">
-            Detects abnormal activities using CV and behavioral pattern analysis.
+            Reverse-engineered Discord internals to automate quest completion.
           </p>
         </div>
-
-    <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
-                hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
-                transition-all duration-200 ease-out reveal">
-      <a href="https://github.com/Nikhil00437/shiny-winner" target="_blank"
-         class="text-xl font-semibold hover:text-orange-400">
-        Real-Time Emotion Detection
-      </a>
-      <p class="text-neutral-400 mt-2">
-        Webcam-based emotion recognition using DeepFace + OpenCV.
-      </p>
+        <div class="grid gap-6">
+          <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+                      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+                      transition-all duration-200 ease-out reveal">
+            <a href="https://github.com/Nikhil00437/cap" target="_blank"
+               class="text-xl font-semibold hover:text-orange-400">
+               Smart Surveillance – Anomaly Detection
+            </a>
+            <p class="text-neutral-400 mt-2">
+              Detects abnormal activities using CV and behavioral pattern analysis.
+            </p>
+          </div>
+  
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+                  hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+                  transition-all duration-200 ease-out reveal">
+        <a href="https://github.com/Nikhil00437/shiny-winner" target="_blank"
+           class="text-xl font-semibold hover:text-orange-400">
+          Real-Time Emotion Detection
+        </a>
+        <p class="text-neutral-400 mt-2">
+          Webcam-based emotion recognition using DeepFace + OpenCV.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-<section id="contact" class="relative mx-auto max-w-6xl px-4 py-24 md:px-6">
-  <h2 class="mb-12 text-center text-3xl font-bold tracking-tight">
-    Contact
-  </h2>
-
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    
-    <!-- Email -->
-    <a
-      href="mailto:nikhilbisht2005@gmail.com"
-      class="contact-card group"
-    >
-      <span class="contact-icon">✉️</span>
-      <div>
-        <p class="contact-title">Email</p>
-        <p class="contact-text">nikhilbisht2005@gmail.com</p>
-      </div>
-    </a>
-
-    <!-- Phone -->
-    <a
-      href="tel:+918199083617"
-      class="contact-card group"
-    >
-      <span class="contact-icon">📞</span>
-      <div>
-        <p class="contact-title">Phone</p>
-        <p class="contact-text">+91 81990 81617</p>
-      </div>
-    </a>
-
-    <!-- LinkedIn -->
-    <a
-      href="https://www.linkedin.com/in/nikhil-bisht-986047298/"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="contact-card group"
-    >
-      <span class="contact-icon">💼</span>
-      <div>
-        <p class="contact-title">LinkedIn</p>
-        <p class="contact-text">linkedin.com/in/nikhil-bisht-986047298</p>
-      </div>
-    </a>
-
-    <!-- GitHub -->
-    <a
-      href="https://github.com/Nikhil00437"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="contact-card group"
-    >
-      <span class="contact-icon">🐙</span>
-      <div>
-        <p class="contact-title">GitHub</p>
-        <p class="contact-text">github.com/Nikhil00437</p>
-      </div>
-    </a>
-
-    <!-- Instagram -->
-    <a
-      href="https://www.instagram.com/nikhil_.1581"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="contact-card group"
-    >
-      <span class="contact-icon">📸</span>
-      <div>
-        <p class="contact-title">Instagram</p>
-        <p class="contact-text">@nikhil_.1581</p>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-
-<footer class="py-6 text-center text-neutral-500 border-t border-neutral-800">
-  © 2026 Nikhil — Built clean, not flashy.
-</footer>
-
+  </section>
+  
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="relative mx-auto max-w-6xl px-4 py-24 md:px-6">
+    <h2 class="mb-12 text-center text-3xl font-bold tracking-tight">
+      Contact
+    </h2>
+  
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+  
+      <a href="mailto:nikhilbisht2005@gmail.com" class="contact-card">
+        <span class="contact-icon">✉️</span>
+        <div>
+          <p class="contact-title">Email</p>
+          <p class="contact-text">nikhilbisht2005@gmail.com</p>
+        </div>
+      </a>
+  
+      <a href="tel:+918199081617" class="contact-card">
+        <span class="contact-icon">📞</span>
+        <div>
+          <p class="contact-title">Phone</p>
+          <p class="contact-text">+91 81990 81617</p>
+        </div>
+      </a>
+  
+      <a
+        href="https://www.linkedin.com/in/nikhil-bisht-986047298/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-card"
+      >
+        <span class="contact-icon">💼</span>
+        <div>
+          <p class="contact-title">LinkedIn</p>
+          <p class="contact-text">
+            linkedin.com/in/nikhil-bisht-986047298
+          </p>
+        </div>
+      </a>
+  
+      <a
+        href="https://github.com/Nikhil00437"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-card"
+      >
+        <span class="contact-icon">🐙</span>
+        <div>
+          <p class="contact-title">GitHub</p>
+          <p class="contact-text">github.com/Nikhil00437</p>
+        </div>
+      </a>
+  
+      <a
+        href="https://www.instagram.com/nikhil_.1581"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-card"
+      >
+        <span class="contact-icon">📸</span>
+        <div>
+          <p class="contact-title">Instagram</p>
+          <p class="contact-text">@nikhil_.1581</p>
+        </div>
+      </a>
+  
+    </div>
+  </section>
+  <footer class="py-6 text-center text-neutral-500 border-t border-neutral-800">
+    © 2026 Nikhil — Built clean, not flashy.
+  </footer>
+  
 <!-- ================= SCRIPTS ================= -->
 <script>
-  /* Mobile menu */
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
+/**********************************************************
+ * HERO GRID + SPOTLIGHT CANVAS
+ **********************************************************/
+const canvas = document.getElementById("grid-canvas");
+const hero = document.getElementById("hero");
+const ctx = canvas.getContext("2d");
 
-  menuBtn.onclick = () => {
-    const hidden = mobileMenu.classList.toggle("hidden");
-    menuBtn.setAttribute("aria-expanded", !hidden);
+let w, h, dpr;
+const dots = [];
+
+/* CONFIG */
+const spacing = 23;
+const influence = 140;
+const maxOffset = 10;
+const radius = 0.6;
+const returnSpeed = 0.15;
+
+/* Mouse */
+const mouse = { x: null, y: null, active: false };
+
+/* Hero name */
+const heroName = document.getElementById("hero-name");
+
+/* Resize + DPR fix */
+function resizeCanvas() {
+  const rect = hero.getBoundingClientRect();
+  dpr = window.devicePixelRatio || 1;
+
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  w = rect.width;
+  h = rect.height;
+
+  buildGrid();
+}
+window.addEventListener("resize", resizeCanvas);
+
+/* Build grid */
+function buildGrid() {
+  dots.length = 0;
+  for (let x = 0; x < w; x += spacing) {
+    for (let y = 0; y < h; y += spacing) {
+      dots.push({ ox: x, oy: y, x, y });
+    }
+  }
+}
+
+/* Mouse tracking on HERO (not canvas) */
+hero.addEventListener("mousemove", e => {
+  const rect = hero.getBoundingClientRect();
+  mouse.x = e.clientX - rect.left;
+  mouse.y = e.clientY - rect.top;
+  mouse.active = true;
+});
+
+hero.addEventListener("mouseleave", () => {
+  mouse.active = false;
+  mouse.x = null;
+  mouse.y = null;
+});
+
+/* Hero name center */
+function getHeroCenter() {
+  if (!heroName) return null;
+  const r = heroName.getBoundingClientRect();
+  const c = hero.getBoundingClientRect();
+  return {
+    x: r.left + r.width / 2 - c.left,
+    y: r.top + r.height / 2 - c.top
   };
+}
 
-  /* Hero mouse tracking */
-  const hero = document.getElementById("hero");
-  hero.addEventListener("mousemove", e => {
-    const r = hero.getBoundingClientRect();
-    hero.style.setProperty("--x", `${e.clientX - r.left}px`);
-    hero.style.setProperty("--y", `${e.clientY - r.top}px`);
+/* Animation */
+function animateGrid() {
+  ctx.clearRect(0, 0, w, h);
+
+  if (!mouse.active) {
+    requestAnimationFrame(animateGrid);
+    return;
+  }
+
+  const heroCenter = getHeroCenter();
+
+  /* Spotlight mask */
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(mouse.x, mouse.y, influence, 0, Math.PI * 2);
+  ctx.clip();
+
+  /* Color = #fb923c */
+  ctx.shadowColor = "rgba(251, 146, 60, 0.6)";
+  ctx.shadowBlur = 3;
+  ctx.fillStyle = "rgba(251, 146, 60, 0.85)";
+
+  for (const d of dots) {
+    let tx = d.ox;
+    let ty = d.oy;
+
+    const forces = [];
+
+    /* Mouse force */
+    const dxm = d.ox - mouse.x;
+    const dym = d.oy - mouse.y;
+    const dm = Math.hypot(dxm, dym);
+    if (dm < influence) forces.push({ dx: dxm, dy: dym, dist: dm });
+
+    /* Hero name force */
+    if (heroCenter) {
+      const dxh = d.ox - heroCenter.x;
+      const dyh = d.oy - heroCenter.y;
+      const dh = Math.hypot(dxh, dyh);
+      if (dh < influence) forces.push({ dx: dxh, dy: dyh, dist: dh });
+    }
+
+    /* Apply closest force */
+    if (forces.length) {
+      const f = forces.sort((a, b) => a.dist - b.dist)[0];
+      const power = (1 - f.dist / influence) * maxOffset;
+      tx += (f.dx / f.dist) * power;
+      ty += (f.dy / f.dist) * power;
+    }
+
+    /* Smooth movement */
+    d.x += (tx - d.x) * returnSpeed;
+    d.y += (ty - d.y) * returnSpeed;
+
+    /* Draw circle */
+    ctx.beginPath();
+    ctx.arc(d.x, d.y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
+  requestAnimationFrame(animateGrid);
+}
+
+/* Init */
+resizeCanvas();
+animateGrid();
+
+/**********************************************************
+ * PROJECT CARD SPOTLIGHT
+ **********************************************************/
+document.querySelectorAll(".project-card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty("--x", `${e.clientX - r.left}px`);
+    card.style.setProperty("--y", `${e.clientY - r.top}px`);
   });
+});
 
-  /* Project spotlight */
-  document.querySelectorAll(".project-card").forEach(card => {
-    card.addEventListener("mousemove", e => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty("--x", `${e.clientX - r.left}px`);
-      card.style.setProperty("--y", `${e.clientY - r.top}px`);
-    });
-  });
-
-  /* Scroll reveal */
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        revealObserver.unobserve(e.target);
+/**********************************************************
+ * SCROLL REVEAL
+ **********************************************************/
+const revealObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  },
+  { threshold: 0.15 }
+);
 
-  document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+document.querySelectorAll(".reveal").forEach(el =>
+  revealObserver.observe(el)
+);
 
-  /* Active nav */
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
+/**********************************************************
+ * ACTIVE NAV
+ **********************************************************/
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-link");
 
-  const navObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
+const navObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
         navLinks.forEach(l => l.classList.remove("active"));
         document
-          .querySelector(`.nav-link[href="#${e.target.id}"]`)
+          .querySelector(`.nav-link[href="#${entry.target.id}"]`)
           ?.classList.add("active");
       }
     });
-  }, { rootMargin: "-40% 0px -40% 0px" });
+  },
+  { rootMargin: "-40% 0px -40% 0px" }
+);
 
-  sections.forEach(s => navObserver.observe(s));
+sections.forEach(section => navObserver.observe(section));
+document.querySelectorAll(".contact-card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty("--x", `${e.clientX - r.left}px`);
+    card.style.setProperty("--y", `${e.clientY - r.top}px`);
+  });
+});
+
 </script>
 
 </body>
