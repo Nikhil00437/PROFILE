@@ -6,33 +6,20 @@
 
   <title>Nikhil | AI & Data Science Engineer</title>
 
-  <!-- SEO -->
-  <meta name="description" content="AI & Data Science student building ML systems, voice assistants, and real-world intelligent applications." />
+  <meta name="description"
+        content="AI & Data Science student building production-grade ML systems and intelligent applications." />
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Animations + Hero Effect -->
   <style>
+    /* ===== BASE ANIMATIONS ===== */
     @keyframes fade-in {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes slide-up {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .animate-fade-in {
-      animation: fade-in 0.8s ease-out forwards;
-    }
-
-    .animate-slide-up {
-      animation: slide-up 0.8s ease-out forwards;
-    }
-
-    /* ===== HERO BACKGROUND EFFECT ===== */
+    /* ===== HERO BACKGROUND ===== */
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -53,7 +40,84 @@
         transparent 60%
       );
       pointer-events: none;
-      transition: background 0.05s linear;
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== PROJECT SPOTLIGHT ===== */
+    .project-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        300px circle at var(--x, 50%) var(--y, 50%),
+        rgba(255, 165, 0, 0.15),
+        transparent 60%
+      );
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-card:focus-within {
+      border-color: #fb923c;
+      box-shadow: 0 10px 25px rgba(251, 146, 60, 0.25);
+      transform: translateY(-4px);
+    }
+
+    /* ===== ACTIVE NAV ===== */
+    .nav-link {
+      position: relative;
+      color: #a3a3a3;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link.active {
+      color: #fb923c;
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background: #fb923c;
+      border-radius: 999px;
+    }
+
+    /* ===== ACCESSIBILITY ===== */
+    :focus-visible {
+      outline: 2px solid #fb923c;
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
@@ -63,181 +127,320 @@
 <!-- ================= NAVBAR ================= -->
 <header class="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-900/70 backdrop-blur">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold tracking-wide">Nikhil</h1>
+    <h1 class="text-2xl font-bold">Nikhil</h1>
 
-    <button id="menu-btn" class="sm:hidden">
+    <button id="menu-btn"
+            aria-expanded="false"
+            aria-label="Toggle menu"
+            class="sm:hidden">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
 
-    <nav class="hidden sm:flex space-x-6 font-medium text-neutral-300">
-      <a href="#about" class="hover:text-orange-400">About</a>
-      <a href="#skills" class="hover:text-orange-400">Skills</a>
-      <a href="#projects" class="hover:text-orange-400">Projects</a>
-      <a href="#contact" class="hover:text-orange-400">Contact</a>
+    <nav class="hidden sm:flex space-x-6 font-medium">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </nav>
   </div>
 
-  <div id="mobile-menu" class="hidden sm:hidden px-6 pb-4 space-y-2 text-neutral-300">
-    <a href="#about" class="block">About</a>
-    <a href="#skills" class="block">Skills</a>
-    <a href="#projects" class="block">Projects</a>
-    <a href="#contact" class="block">Contact</a>
+  <div id="mobile-menu" class="hidden sm:hidden px-6 pb-4 space-y-2">
+    <a href="#about" class="nav-link block">About</a>
+    <a href="#skills" class="nav-link block">Skills</a>
+    <a href="#projects" class="nav-link block">Projects</a>
+    <a href="#contact" class="nav-link block">Contact</a>
   </div>
 </header>
 
 <!-- ================= HERO ================= -->
-<section
-  id="hero"
-  class="relative min-h-screen flex items-center justify-center text-center px-6 overflow-hidden"
->
-  <!-- Background -->
+<section id="hero"
+         class="relative min-h-screen flex items-center justify-center text-center px-6 overflow-hidden">
   <div class="hero-bg"></div>
 
-  <!-- Content -->
   <div class="relative z-10 max-w-4xl mx-auto pt-28 pb-28">
-    <img
-      src="image/nikhil.png"
-      alt="Nikhil"
-      class="w-36 h-36 rounded-full border-4 border-orange-400 shadow-xl mx-auto mb-8 animate-fade-in"
-    />
+    <img src="image/nikhil.png"
+         alt="Nikhil"
+         class="w-36 h-36 rounded-full border-4 border-orange-400 shadow-xl mx-auto mb-8"
+         style="animation: fade-in 0.8s ease forwards;" />
 
-    <h2 class="text-5xl sm:text-6xl font-bold text-neutral-100 animate-fade-in">
+    <h2 class="text-5xl sm:text-6xl font-bold">
       AI & Data Science Engineer
     </h2>
 
-    <p class="mt-5 text-lg text-neutral-400 animate-fade-in">
+    <p class="mt-5 text-lg text-neutral-400">
       Building intelligent systems — not toy demos.
     </p>
 
-    <a
-      href="resume/Nikhil.pdf"
-      download
-      class="inline-block mt-10 bg-orange-500 text-black px-7 py-3 rounded-full font-semibold hover:bg-orange-400 transition"
-    >
+    <a href="resume/Nikhil.pdf"
+       download
+       class="inline-block mt-10 bg-orange-500 text-black px-7 py-3 rounded-full font-semibold hover:bg-orange-400 transition">
       Download Resume →
     </a>
   </div>
 </section>
 
 <!-- ================= ABOUT ================= -->
-<section id="about" class="py-24 max-w-5xl mx-auto px-6 animate-slide-up">
+<section id="about" class="py-24 max-w-5xl mx-auto px-6 reveal">
   <h3 class="text-4xl font-semibold mb-6">About Me</h3>
-  <p class="text-lg leading-relaxed text-neutral-400">
-    I build practical AI and data-driven systems with a focus on reliability,
-    performance, and real-world usability. My work includes
-    <span class="text-neutral-200 font-medium">
-      RAG pipelines, computer vision systems, and backend AI services
-    </span>.
+  <p class="text-lg text-neutral-400 leading-relaxed">
+    I build practical AI and data-driven systems with a focus on reliability, performance, and real-world usability. 
+    My work includes RAG pipelines, computer vision systems, and backend AI services .
   </p>
 </section>
 
 <!-- ================= SKILLS ================= -->
-<section id="skills" class="py-24 bg-neutral-900 px-6 animate-slide-up">
+<section id="skills" class="py-24 bg-neutral-900 px-6 reveal">
   <div class="max-w-5xl mx-auto">
     <h3 class="text-4xl font-semibold mb-8">Skills</h3>
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
-      <div class="bg-neutral-800 p-4 rounded">Python</div>
-      <div class="bg-neutral-800 p-4 rounded">C / C++</div>
-      <div class="bg-neutral-800 p-4 rounded">MongoDB</div>
-      <div class="bg-neutral-800 p-4 rounded">Machine Learning</div>
-      <div class="bg-neutral-800 p-4 rounded">Deep Learning</div>
-      <div class="bg-neutral-800 p-4 rounded">Linux</div>
-      <div class="bg-neutral-800 p-4 rounded">TensorFlow</div>
-      <div class="bg-neutral-800 p-4 rounded">PyTorch</div>
-      <div class="bg-neutral-800 p-4 rounded">OpenCV</div>
-      <div class="bg-neutral-800 p-4 rounded">JavaScript</div>
-      <div class="bg-neutral-800 p-4 rounded">React</div>
-      <div class="bg-neutral-800 p-4 rounded">Docker</div>
-      <div class="bg-neutral-800 p-4 rounded">Git</div>
-      <div class="bg-neutral-800 p-4 rounded">GitHub</div>
-      <div class="bg-neutral-800 p-4 rounded">REST APIs</div>
-      <div class="bg-neutral-800 p-4 rounded">DBMS</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">Python</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">C / C++</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">MongoDB</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">Machine Learning</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">Deep Learning</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">Linux</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">TensorFlow</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">PyTorch</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">OpenCV</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">JavaScript</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">React</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">Docker</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">Git</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">GitHub</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">REST APIs</div>
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+      hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+      transition-all duration-200 ease-out reveal">DBMS</div>
     </div>
   </div>
 </section>
 
 <!-- ================= PROJECTS ================= -->
-<section id="projects" class="py-24 max-w-5xl mx-auto px-6 animate-slide-up">
+<section id="projects" class="py-24 max-w-5xl mx-auto px-6 reveal">
   <h3 class="text-4xl font-semibold mb-8">Projects</h3>
 
   <div class="grid gap-6">
-    <div class="bg-neutral-900 p-6 rounded-lg border border-neutral-800 hover:border-orange-400 transition">
+    <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+                hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+                transition-all duration-200 ease-out reveal">
       <a href="https://github.com/Nikhil00437/cap" target="_blank"
          class="text-xl font-semibold hover:text-orange-400">
         AI RAG Chatbot
       </a>
       <p class="text-neutral-400 mt-2">
-        Retrieval-Augmented Generation chatbot answering strictly from verified documents.
+        Verified-document RAG chatbot with strict grounding.
       </p>
     </div>
+    <div class="grid gap-6">
+      <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+                  hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+                  transition-all duration-200 ease-out reveal">
+        <a href="https://github.com/Nikhil00437/cap" target="_blank"
+           class="text-xl font-semibold hover:text-orange-400">
+           Discord Quest Automation
+        </a>
+        <p class="text-neutral-400 mt-2">
+          Reverse-engineered Discord internals to automate quest completion.
+        </p>
+      </div>
+      <div class="grid gap-6">
+        <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+                    hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+                    transition-all duration-200 ease-out reveal">
+          <a href="https://github.com/Nikhil00437/cap" target="_blank"
+             class="text-xl font-semibold hover:text-orange-400">
+             Smart Surveillance – Anomaly Detection
+          </a>
+          <p class="text-neutral-400 mt-2">
+            Detects abnormal activities using CV and behavioral pattern analysis.
+          </p>
+        </div>
 
-    <div class="bg-neutral-900 p-6 rounded-lg border border-neutral-800 hover:border-orange-400 transition">
-      <a href="https://github.com/Nikhil00437/discordquestcompletionmodified" target="_blank"
-         class="text-xl font-semibold hover:text-orange-400">
-        Discord Quest Automation
-      </a>
-      <p class="text-neutral-400 mt-2">
-        Reverse-engineered Discord internals to automate quest completion.
-      </p>
-    </div>
-
-    <div class="bg-neutral-900 p-6 rounded-lg border border-neutral-800 hover:border-orange-400 transition">
-      <a href="https://github.com/Nikhil00437/anomaly-detection-smsvuandt-" target="_blank"
-         class="text-xl font-semibold hover:text-orange-400">
-        Smart Surveillance – Anomaly Detection
-      </a>
-      <p class="text-neutral-400 mt-2">
-        Detects abnormal activities using CV and behavioral pattern analysis.
-      </p>
-    </div>
-
-    <div class="bg-neutral-900 p-6 rounded-lg border border-neutral-800 hover:border-orange-400 transition">
+    <div class="project-card bg-neutral-900 p-6 rounded-lg border border-neutral-800
+                hover:border-orange-400 hover:-translate-y-1 hover:shadow-lg
+                transition-all duration-200 ease-out reveal">
       <a href="https://github.com/Nikhil00437/shiny-winner" target="_blank"
          class="text-xl font-semibold hover:text-orange-400">
         Real-Time Emotion Detection
       </a>
       <p class="text-neutral-400 mt-2">
-        Webcam-based emotion recognition using DeepFace and OpenCV.
+        Webcam-based emotion recognition using DeepFace + OpenCV.
       </p>
     </div>
   </div>
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section id="contact" class="py-24 bg-neutral-900 px-6 animate-slide-up">
-  <div class="max-w-5xl mx-auto">
-    <h3 class="text-4xl font-semibold mb-6">Contact</h3>
-    <p class="text-lg text-neutral-400 mb-4">
-      Want to collaborate or build something serious?
-    </p>
-    <a href="mailto:nikhilbisht2005@gmail.com"
-       class="text-orange-400 text-lg underline">
-      nikhilbisht2005@gmail.com
+<section id="contact" class="relative mx-auto max-w-6xl px-4 py-24 md:px-6">
+  <h2 class="mb-12 text-center text-3xl font-bold tracking-tight">
+    Contact
+  </h2>
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    
+    <!-- Email -->
+    <a
+      href="mailto:nikhilbisht2005@gmail.com"
+      class="contact-card group"
+    >
+      <span class="contact-icon">✉️</span>
+      <div>
+        <p class="contact-title">Email</p>
+        <p class="contact-text">nikhilbisht2005@gmail.com</p>
+      </div>
     </a>
+
+    <!-- Phone -->
+    <a
+      href="tel:+918199083617"
+      class="contact-card group"
+    >
+      <span class="contact-icon">📞</span>
+      <div>
+        <p class="contact-title">Phone</p>
+        <p class="contact-text">+91 81990 81617</p>
+      </div>
+    </a>
+
+    <!-- LinkedIn -->
+    <a
+      href="https://www.linkedin.com/in/nikhil-bisht-986047298/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="contact-card group"
+    >
+      <span class="contact-icon">💼</span>
+      <div>
+        <p class="contact-title">LinkedIn</p>
+        <p class="contact-text">linkedin.com/in/nikhil-bisht-986047298</p>
+      </div>
+    </a>
+
+    <!-- GitHub -->
+    <a
+      href="https://github.com/Nikhil00437"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="contact-card group"
+    >
+      <span class="contact-icon">🐙</span>
+      <div>
+        <p class="contact-title">GitHub</p>
+        <p class="contact-text">github.com/Nikhil00437</p>
+      </div>
+    </a>
+
+    <!-- Instagram -->
+    <a
+      href="https://www.instagram.com/nikhil_.1581"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="contact-card group"
+    >
+      <span class="contact-icon">📸</span>
+      <div>
+        <p class="contact-title">Instagram</p>
+        <p class="contact-text">@nikhil_.1581</p>
+      </div>
+    </a>
+
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+
 <footer class="py-6 text-center text-neutral-500 border-t border-neutral-800">
-  © 2025 Nikhil — Built clean, not flashy.
+  © 2026 Nikhil — Built clean, not flashy.
 </footer>
 
 <!-- ================= SCRIPTS ================= -->
 <script>
-  // Mobile menu
-  document.getElementById("menu-btn").onclick = () =>
-    document.getElementById("mobile-menu").classList.toggle("hidden");
+  /* Mobile menu */
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-  // Hero mouse tracking
+  menuBtn.onclick = () => {
+    const hidden = mobileMenu.classList.toggle("hidden");
+    menuBtn.setAttribute("aria-expanded", !hidden);
+  };
+
+  /* Hero mouse tracking */
   const hero = document.getElementById("hero");
-  hero.addEventListener("mousemove", (e) => {
-    const rect = hero.getBoundingClientRect();
-    hero.style.setProperty("--x", `${e.clientX - rect.left}px`);
-    hero.style.setProperty("--y", `${e.clientY - rect.top}px`);
+  hero.addEventListener("mousemove", e => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty("--x", `${e.clientX - r.left}px`);
+    hero.style.setProperty("--y", `${e.clientY - r.top}px`);
   });
+
+  /* Project spotlight */
+  document.querySelectorAll(".project-card").forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--x", `${e.clientX - r.left}px`);
+      card.style.setProperty("--y", `${e.clientY - r.top}px`);
+    });
+  });
+
+  /* Scroll reveal */
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+  /* Active nav */
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove("active"));
+        document
+          .querySelector(`.nav-link[href="#${e.target.id}"]`)
+          ?.classList.add("active");
+      }
+    });
+  }, { rootMargin: "-40% 0px -40% 0px" });
+
+  sections.forEach(s => navObserver.observe(s));
 </script>
 
 </body>
