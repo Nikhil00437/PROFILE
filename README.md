@@ -1,46 +1,61 @@
-# 🌐 Nikhil's Developer Portfolio
+# 🚀 Nikhil — AI & Data Science Engineer Portfolio
 
-Welcome to my personal portfolio website built using **HTML** and **Tailwind CSS**. This site showcases my journey as a B.Tech student in **Artificial Intelligence & Data Science**, my projects, skills, and more.
+A modern, interactive developer portfolio showcasing my work in **AI, Machine Learning, Computer Vision, and backend systems**, built with a focus on **performance, UX polish, and production-grade design**.
 
-## 📄 Live Website
-You can view the portfolio live at:  
-👉 [https://nikhil00437.github.io/PROFILE/](https://nikhil00437.github.io/PROFILE/)
+Live features include a **cursor-reactive spotlight grid hero**, **scroll reveal animations**, and **interactive project/contact cards**.
 
 ---
 
-## 🧑‍💻 About Me
-I’m currently pursuing my B.Tech in AI & DS from CGC Landran. I'm passionate about:
-- Voice Assistants  
-- Speech-Based Translation  
-- Real-world AI/ML Projects  
-- Data Visualization  
-- Hardware & IoT Concepts (Raspberry Pi, Arduino)
+## 🌐 Live Demo
+
+> 🔗 **Portfolio Website:**  
+> https://nikhil00437.github.io/PROFILE/
 
 ---
 
-## 🚀 Technologies Used
-- HTML5  
-- Tailwind CSS  
-- Vanilla JavaScript (for navbar toggling)  
-- Git & GitHub
+## ✨ Features
+
+- 🎯 **Interactive Hero Grid**
+  - Cursor-follow spotlight effect
+  - Physics-inspired dot separation with smooth easing
+  - Optimized canvas rendering for performance
+
+- 🧭 **Scroll Reveal Animations**
+  - IntersectionObserver-based section reveals
+  - Motion-aware for reduced-motion users
+
+- 💡 **Spotlight Hover Cards**
+  - Projects and contact cards react to cursor position
+  - Subtle glow and depth effects for premium UX
+
+- 📱 **Responsive Design**
+  - Mobile-first layout
+  - Adaptive grid system
+  - Accessible navigation
+
+- ♿ **Accessibility**
+  - Keyboard focus states
+  - Reduced motion support
+  - Semantic HTML structure
 
 ---
 
-## 📁 Project Structure
-├── index.html ├── /image │ └── nikhil.png ├── /resume │ └── Resume2.pdf
+## 🛠️ Tech Stack
 
-
----
-
-## 📬 Contact
-Feel free to reach out or collaborate:
-- 📧 Email: [nikhilbisht2005@gmail.com](mailto:nikhilbisht2005@gmail.com)
+- **Frontend:** HTML5, Tailwind CSS  
+- **Interactions:** Vanilla JavaScript (Canvas API, IntersectionObserver)  
+- **Design System:** Custom utility-based UI + CSS gradients  
+- **Deployment:** GitHub Pages
 
 ---
 
-## 📌 Note
-This is a static portfolio hosted on **GitHub Pages**. You’re welcome to fork and customize it for your own use!
+## 📂 Project Structure
 
----
-
-⭐ If you like it, give this repo a star!
+```bash
+PROFILE/
+├── index.html
+├── image/
+│   └── nikhil.png
+├── resume/
+│   └── Nikhil.pdf
+└── README.md
