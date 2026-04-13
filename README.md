@@ -44,8 +44,8 @@ I specialize in **LLM fine-tuning**, **RAG pipelines**, and **local AI deploymen
 | Model | Downloads | Size | Notes |
 |---|---|---|---|
 | [Qwen3-4B Excel FT](https://huggingface.co/Nikhil1581/qwen3-4b-instruct-2507.Q4_K_M-excel-finetuning-1.2kdataset) | 58 | ~2.3 GB | 96% accuracy on standard eval · Q4\_K\_M |
-| [Qwen3.5-2B Excel FT](https://huggingface.co/Nikhil1581/qwen3.5-2b.Q4_K_M-excel_fine_tuning) | 45 | **1.27 GB** | 77.8% loss reduction · 72.1% size reduction |
-| [Excel Instruction Dataset](https://huggingface.co/datasets/Nikhil1581/excel_dataset) | 4 | ~1.2K pairs | Alpaca-format · JSON · powers both models |
+| [Qwen3.5-2B Excel FT](https://huggingface.co/Nikhil1581/qwen3.5-2b.Q4_K_M-excel_fine_tuning) | 221 | **1.27 GB** | 77.8% loss reduction · 72.1% size reduction |
+| [Excel Instruction Dataset](https://huggingface.co/datasets/Nikhil1581/excel_dataset) | 10 | ~1.2K pairs | Alpaca-format · JSON · powers both models |
 
 Both models run via **Ollama** on CPU or GPU. Fine-tuned with QLoRA + Unsloth on ~1,200 Excel instruction–response pairs covering formulas, VBA, pivot tables, and financial modelling.
 
